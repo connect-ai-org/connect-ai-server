@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/connect-ai-org/connect-ai-server#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^5.13.15",
