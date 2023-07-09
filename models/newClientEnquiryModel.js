@@ -18,6 +18,32 @@ const newClientEnquirySchema = new mongoose.Schema(
       type: String,
       required: [true, 'Last Name is required'],
     },
+    jobTitle: {
+      type: String,
+    },
+    isBusinessOwner: {
+      type: Boolean,
+    },
+    website: {
+      type: String,
+    },
+    industry: {
+      type: String,
+      required: [true, 'Industry is required'],
+    },
+    hasMarketingPlan: {
+      type: Boolean,
+    },
+    description: {
+      type: String,
+      required: [true, 'Description is required'],
+    },
+    knownBy: {
+      type: String,
+    },
+    hasAlreadyWorkedWithMarketingAgency: {
+      type: Boolean,
+    },
   },
   {
     toJSON: { virtuals: true },
