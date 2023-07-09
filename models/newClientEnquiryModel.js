@@ -27,6 +27,9 @@ const newClientEnquirySchema = new mongoose.Schema(
     website: {
       type: String,
     },
+    phone: {
+      type: String,
+    },
     industry: {
       type: String,
       required: [true, 'Industry is required'],
