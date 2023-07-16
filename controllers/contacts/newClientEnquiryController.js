@@ -1,5 +1,5 @@
-const NewClientEnquiry = require('../models/newClientEnquiryModel');
-const { sendNewClientEnquiryEmail } = require('./emailController');
+const NewClientEnquiry = require('../../models/contacts/newClientEnquiryModel');
+const { sendNewClientEnquiryEmail } = require('../emailController');
 
 exports.createNewClientEnquiry = async (req, res) => {
   try {

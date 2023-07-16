@@ -13,7 +13,8 @@ app.use(
   })
 );
 
-const newClientEnquiryRouter = require('./routes/newClientEnquiryRoute');
+const newClientEnquiryRouter = require('./routes/contacts/newClientEnquiryRoute');
+const contactRouter = require('./routes/contacts/contactRoute');
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -28,5 +29,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/newClientEnquiries', newClientEnquiryRouter);
+app.use('/api/v1/contacts', contactRouter);
 
 module.exports = app;

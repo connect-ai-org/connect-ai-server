@@ -4,9 +4,8 @@ const Mailgen = require('mailgen');
 
 const { getEmail } = require('../utils/email');
 
-exports.sendNewClientEnquiryEmail = (user) => {
+const sendEmail = (message) => {
   const [EMAIL, PASSWORD] = getEmail();
-
   const config = {
     service: 'gmail',
     auth: {
@@ -14,8 +13,19 @@ exports.sendNewClientEnquiryEmail = (user) => {
       pass: PASSWORD,
     },
   };
-
   const transporter = nodemailer.createTransport(config);
+  transporter
+    .sendMail(message)
+    .then(() => {
+      console.log('Send Email Successfully...!');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
+
+exports.sendNewClientEnquiryEmail = (user) => {
+  const [EMAIL] = getEmail();
 
   const MailGenerator = new Mailgen({
     theme: 'default',
@@ -42,9 +52,7 @@ exports.sendNewClientEnquiryEmail = (user) => {
       outro: '',
     },
   };
-
   const mail = MailGenerator.generate(response);
-
   const message = {
     from: EMAIL,
     to: user.email,
@@ -52,12 +60,43 @@ exports.sendNewClientEnquiryEmail = (user) => {
     html: mail,
   };
 
-  transporter
-    .sendMail(message)
-    .then(() => {
-      console.log('Send Email Successfully...!');
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  sendEmail(message);
+};
+
+exports.sendContactEmail = (info) => {
+  const [EMAIL] = getEmail();
+
+  const MailGenerator = new Mailgen({
+    theme: 'default',
+    product: {
+      name: 'Connect AI',
+      link: 'https://dev-connect-ai.web.app/contact',
+    },
+  });
+
+  const response = {
+    body: {
+      name: info.firstName,
+      intro:
+        'Thank you for reaching out! We received your email and will get back to you shortly.',
+      table: {
+        data: [
+          {
+            name: [info.firstName, info.lastName].join(' '),
+            email: info.email,
+          },
+        ],
+      },
+      outro: '',
+    },
+  };
+  const mail = MailGenerator.generate(response);
+  const message = {
+    from: EMAIL,
+    to: info.email,
+    subject: 'Contact',
+    html: mail,
+  };
+
+  sendEmail(message);
 };
