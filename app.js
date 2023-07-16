@@ -15,6 +15,7 @@ app.use(
 
 const newClientEnquiryRouter = require('./routes/contacts/newClientEnquiryRoute');
 const contactRouter = require('./routes/contacts/contactRoute');
+const supportTicketRouter = require('./routes/contacts/supportTicketRoute');
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -30,5 +31,6 @@ app.use((req, res, next) => {
 
 app.use('/api/v1/newClientEnquiries', newClientEnquiryRouter);
 app.use('/api/v1/contacts', contactRouter);
+app.use('/api/v1/supportTickets', supportTicketRouter);
 
 module.exports = app;

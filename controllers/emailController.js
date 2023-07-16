@@ -100,3 +100,45 @@ exports.sendContactEmail = (info) => {
 
   sendEmail(message);
 };
+
+exports.sendSupportTicketEmail = (info) => {
+  const [EMAIL] = getEmail();
+
+  const MailGenerator = new Mailgen({
+    theme: 'default',
+    product: {
+      name: 'Connect AI',
+      link: 'https://dev-connect-ai.web.app/contact',
+    },
+  });
+
+  const response = {
+    body: {
+      name: info.firstName,
+      intro:
+        'Thank you for reaching out! We received your ticket and will get back to you shortly.',
+      table: {
+        data: [
+          {
+            name: [info.firstName, info.lastName].join(' '),
+            email: info.email,
+          },
+        ],
+      },
+      outro: '',
+    },
+  };
+  const mail = MailGenerator.generate(response);
+  const message = {
+    from: EMAIL,
+    to: info.email,
+    subject: 'Support Ticket',
+    html: mail,
+    attachments: info.attachments.map((file) => ({
+      filename: file.firstName,
+      path: file.fileUrl,
+    })),
+  };
+
+  sendEmail(message);
+};
