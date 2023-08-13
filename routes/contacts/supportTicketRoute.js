@@ -4,6 +4,6 @@ const supportTicketController = require('../../controllers/contacts/supportTicke
 
 const router = express.Router();
 
-router.route('/').post(supportTicketController.createContact);
+router.route('/').post(supportTicketController.createSupportTicket);
 
 module.exports = router;
