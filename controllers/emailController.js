@@ -39,17 +39,12 @@ exports.sendNewClientEnquiryEmail = (user) => {
     body: {
       name: user.firstName,
       intro:
-        'Thank you for reaching out! We received your email and will get back to you shortly.',
-      table: {
-        data: [
-          {
-            name: [user.firstName, user.lastName].join(' '),
-            business: user.businessName,
-            email: user.email,
-          },
-        ],
-      },
-      outro: '',
+        'Thank you for reaching out! We have received your email and we will get back to you within three business days.',
+      outro: [
+        'If there is anything urgent or you prefer to talk on the phone, please call us on 0414001427.',
+        'We look forward to chatting soon!',
+      ],
+      signature: 'Warm regards',
     },
   };
   const mail = MailGenerator.generate(response);
@@ -78,16 +73,12 @@ exports.sendContactEmail = (info) => {
     body: {
       name: info.firstName,
       intro:
-        'Thank you for reaching out! We received your email and will get back to you shortly.',
-      table: {
-        data: [
-          {
-            name: [info.firstName, info.lastName].join(' '),
-            email: info.email,
-          },
-        ],
-      },
-      outro: '',
+        'Thank you for reaching out! We have received your email and we will get back to you within three business days.',
+      outro: [
+        'If there is anything urgent or you prefer to talk on the phone, please call us on 0414001427.',
+        'We look forward to chatting soon!',
+      ],
+      signature: 'Warm regards',
     },
   };
   const mail = MailGenerator.generate(response);
@@ -116,16 +107,12 @@ exports.sendSupportTicketEmail = (info) => {
     body: {
       name: info.firstName,
       intro:
-        'Thank you for reaching out! We received your ticket and will get back to you shortly.',
-      table: {
-        data: [
-          {
-            name: [info.firstName, info.lastName].join(' '),
-            email: info.email,
-          },
-        ],
-      },
-      outro: '',
+        'Thank you for reaching out! We have received your email and we will get back to you within three business days.',
+      outro: [
+        'If there is anything urgent or you prefer to talk on the phone, please call us on 0414001427.',
+        'We look forward to chatting soon!',
+      ],
+      signature: 'Warm regards',
     },
   };
   const mail = MailGenerator.generate(response);
