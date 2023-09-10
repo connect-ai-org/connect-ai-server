@@ -7,7 +7,12 @@ const { getEmail } = require('../utils/email');
 const sendEmail = (message) => {
   const [EMAIL, PASSWORD] = getEmail();
   const config = {
-    service: 'gmail',
+    host: 'smtp-mail.outlook.com',
+    secureConnection: false,
+    port: 587,
+    tls: {
+      ciphers: 'SSLv3',
+    },
     auth: {
       user: EMAIL,
       pass: PASSWORD,
