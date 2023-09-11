@@ -1,10 +1,14 @@
 const Contact = require('../../models/contacts/contactModel');
-const { sendContactEmail } = require('../emailController');
+const {
+  sendContactEmailToCustomer,
+  sendContactEmailToAdmin,
+} = require('../emailController');
 
 exports.createContact = async (req, res) => {
   try {
     const contact = await Contact.create(req.body);
-    sendContactEmail(req.body);
+    sendContactEmailToCustomer(req.body);
+    sendContactEmailToAdmin(req.body);
 
     res.status(201).json({
       status: 'success',

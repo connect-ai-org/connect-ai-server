@@ -1,8 +1,7 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
-
+const multer = require('multer');
 const morgan = require('morgan');
-
-// eslint-disable-next-line import/no-extraneous-dependencies
 const cors = require('cors');
 
 const app = express();
@@ -29,8 +28,19 @@ app.use((req, res, next) => {
   next();
 });
 
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, `${__dirname}/uploads`);
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
+const uploads = multer({ storage: storage });
+
 app.use('/api/v1/newClientEnquiries', newClientEnquiryRouter);
 app.use('/api/v1/contacts', contactRouter);
-app.use('/api/v1/supportTickets', supportTicketRouter);
+app.use('/api/v1/supportTickets', uploads.array('files'), supportTicketRouter);
 
 module.exports = app;

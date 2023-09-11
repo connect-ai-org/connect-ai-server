@@ -1,10 +1,14 @@
 const NewClientEnquiry = require('../../models/contacts/newClientEnquiryModel');
-const { sendNewClientEnquiryEmail } = require('../emailController');
+const {
+  sendNewClientEnquiryEmailToCustomer,
+  sendNewClientEnquiryEmailToAdmin,
+} = require('../emailController');
 
 exports.createNewClientEnquiry = async (req, res) => {
   try {
     const newClientEnquiry = await NewClientEnquiry.create(req.body);
-    sendNewClientEnquiryEmail(req.body);
+    sendNewClientEnquiryEmailToCustomer(req.body);
+    sendNewClientEnquiryEmailToAdmin(req.body);
 
     res.status(201).json({
       status: 'success',
