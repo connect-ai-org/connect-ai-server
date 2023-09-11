@@ -1,5 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
+const fs = require('fs');
 const multer = require('multer');
 const morgan = require('morgan');
 const cors = require('cors');
@@ -26,6 +27,14 @@ app.use(express.static(`${__dirname}/public`));
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
+});
+
+fs.readFile('./uploads/text.txt', 'utf-8', (err, data) => {
+  if (err) {
+    console.log('error');
+  } else {
+    console.log('File data is: ', data);
+  }
 });
 
 const storage = multer.diskStorage({
