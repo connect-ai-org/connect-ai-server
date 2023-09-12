@@ -1,8 +1,21 @@
+/* eslint-disable import/no-extraneous-dependencies */
 const express = require('express');
-
+const fs = require('fs');
+const multer = require('multer');
 const morgan = require('morgan');
+const cors = require('cors');
 
 const app = express();
+
+app.use(
+  cors({
+    origin: '*',
+  })
+);
+
+const newClientEnquiryRouter = require('./routes/contacts/newClientEnquiryRoute');
+const contactRouter = require('./routes/contacts/contactRoute');
+const supportTicketRouter = require('./routes/contacts/supportTicketRoute');
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -15,5 +28,28 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   next();
 });
+
+fs.readFile('./uploads/text.txt', 'utf-8', (err, data) => {
+  if (err) {
+    console.log('error');
+  } else {
+    console.log('File data is: ', data);
+  }
+});
+
+const storage = multer.diskStorage({
+  destination: (req, file, callback) => {
+    callback(null, `${__dirname}/uploads`);
+  },
+  filename: (req, file, callback) => {
+    callback(null, file.originalname);
+  },
+});
+
+const uploads = multer({ storage: storage });
+
+app.use('/api/v1/newClientEnquiries', newClientEnquiryRouter);
+app.use('/api/v1/contacts', contactRouter);
+app.use('/api/v1/supportTickets', uploads.array('files'), supportTicketRouter);
 
 module.exports = app;
