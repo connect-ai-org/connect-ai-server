@@ -48,7 +48,7 @@ exports.sendNewClientEnquiryEmailToCustomer = (user) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
@@ -82,7 +82,7 @@ exports.sendContactEmailToCustomer = (info) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
@@ -116,7 +116,7 @@ exports.sendSupportTicketEmailToCustomer = (info) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
@@ -157,7 +157,7 @@ exports.sendNewClientEnquiryEmailToAdmin = (info) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
@@ -207,7 +207,7 @@ exports.sendContactEmailToAdmin = (info) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
@@ -246,7 +246,7 @@ exports.sendSupportTicketEmailToAdmin = (info, files) => {
     theme: 'default',
     product: {
       name: 'Connect AI',
-      link: 'https://dev-connect-ai.web.app/contact',
+      link: 'https://connectai.au/contact',
     },
   });
 
