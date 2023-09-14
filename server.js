@@ -12,7 +12,7 @@ const getDatabase = () => {
         process.env.DATABASE_PASSWORD
       );
     case 'production':
-      return process.env.DATABASE_DEV.replace(
+      return process.env.DATABASE_PROD.replace(
         '<PASSWORD>',
         process.env.DATABASE_PASSWORD
       );
